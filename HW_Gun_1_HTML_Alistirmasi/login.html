@@ -67,17 +67,30 @@
       document
         .getElementById("loginForm")
         .addEventListener("submit", function (e) {
-          const password = document.getElementById("password");
+          e.preventDefault();
+
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value.trim();
           const errorMsg = document.getElementById("loginError");
 
-          password.classList.remove("error");
+          document.getElementById("password").classList.remove("error");
           errorMsg.style.display = "none";
 
-          if (password.value.length < 6) {
-            password.classList.add("error");
-            errorMsg.textContent = "Şifre en az 6 karakter olmalıdır.";
+          // Kullanıcıları localStorage'tan al
+          const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+          // Eşleşen kullanıcı var mı kontrol et
+          const match = users.find(
+            (u) => u.email === email && u.password === password
+          );
+
+          if (match) {
+            alert("✅ Başarıyla giriş yaptınız ama henüz websitemiz yok :)");
+            document.getElementById("loginForm").reset();
+          } else {
+            document.getElementById("password").classList.add("error");
+            errorMsg.textContent = "❌ E-posta veya şifre hatalı.";
             errorMsg.style.display = "block";
-            e.preventDefault();
           }
         });
     </script>

@@ -90,6 +90,10 @@
       document
         .getElementById("signupForm")
         .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const fullname = document.getElementById("fullname").value.trim();
+          const email = document.getElementById("email").value.trim();
           const password = document.getElementById("password");
           const confirm = document.getElementById("confirm_password");
           const passwordError = document.getElementById("passwordError");
@@ -118,7 +122,33 @@
             valid = false;
           }
 
-          if (!valid) e.preventDefault();
+          if (!valid) return;
+
+          const user = {
+            fullname: fullname,
+            email: email,
+            password: password.value, //güvenlik bakımından hiçbir sıkıntı yok :)
+          };
+
+          // Önceki kullanıcılar varsa al, yoksa boş liste
+          const existingUsers = JSON.parse(
+            localStorage.getItem("users") || "[]"
+          );
+
+          // Aynı e-posta varsa kaydetme
+          const emailExists = existingUsers.some((u) => u.email === user.email);
+          if (emailExists) {
+            alert("❌ Bu e-posta zaten kayıtlı.");
+            return;
+          }
+
+          // Yeni kullanıcıyı ekle ve kaydet
+          existingUsers.push(user);
+          localStorage.setItem("users", JSON.stringify(existingUsers));
+
+          alert("✅ Başarıyla kayıt oldunuz!");
+          document.getElementById("signupForm").reset();
+          window.location.href = "login.html"; // otomatik yönlendirme
         });
     </script>
   </body>
