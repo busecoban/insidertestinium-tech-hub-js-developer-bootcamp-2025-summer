@@ -7,7 +7,7 @@
   </head>
   <body>
     <!-- Giriş formu başlangıcı -->
-    <form action="#">
+    <form id="loginForm" action="#">
       <!-- Sayfa başlığı -->
       <h1>Giriş Yap</h1>
 
@@ -23,13 +23,22 @@
 
       <!-- Şifre alanı -->
       <label for="password">Şifre:</label><br />
-      <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Şifrenizi girin"
-        required
-      /><br /><br />
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Şifrenizi girin"
+          required
+        />
+        <span
+          class="toggle-password"
+          onclick="toggleVisibility(this, 'password')"
+          >👁️</span
+        >
+      </div>
+      <div id="loginError" class="error-message"></div>
+      <br />
 
       <!-- Beni Hatırla seçeneği -->
       <input type="checkbox" id="remember" name="remember" />
@@ -42,5 +51,32 @@
       <p>Hesabın yok mu? <a href="signup.html">Hemen Kayıt Ol</a></p>
     </form>
     <!-- Giriş formu bitişi -->
+
+    <!-- Şifre kontrol ve göz ikon scripti -->
+    <script>
+      function toggleVisibility(icon, id) {
+        const input = document.getElementById(id);
+        const isHidden = input.type === "password";
+        input.type = isHidden ? "text" : "password";
+        icon.textContent = isHidden ? "🙈" : "👁️";
+      }
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          const password = document.getElementById("password");
+          const errorMsg = document.getElementById("loginError");
+
+          password.classList.remove("error");
+          errorMsg.style.display = "none";
+
+          if (password.value.length < 6) {
+            password.classList.add("error");
+            errorMsg.textContent = "Şifre en az 6 karakter olmalıdır.";
+            errorMsg.style.display = "block";
+            e.preventDefault();
+          }
+        });
+    </script>
   </body>
 </html>
