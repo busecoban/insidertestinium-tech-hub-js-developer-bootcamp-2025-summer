@@ -132,3 +132,18 @@ a {
 a:hover {
   text-decoration: underline;
 }
+/* Checkbox hizalama */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #34495e;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #007bff;
+}
