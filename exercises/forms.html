@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form Öğeleri Örneği</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      form {
+        max-width: 500px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      input,
+      label,
+      textarea,
+      select,
+      button {
+        display: block;
+        margin-bottom: 12px;
+        width: 100%;
+      }
+      input[type="radio"],
+      input[type="checkbox"] {
+        display: inline-block;
+        width: auto;
+      }
+      label.inline {
+        display: inline;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Kullanıcıdan Veri Alma: Formlar</h1>
+
+    <form action="/submit" method="POST">
+      <!-- Adınız -->
+      <label for="name">Adınız:</label>
+      <input type="text" id="name" name="name" required />
+
+      <!-- E-Posta -->
+      <label for="email">E-Posta:</label>
+      <input type="email" id="email" name="email" required />
+
+      <!-- Çok satırlı metin girişi -->
+      <label for="message">Mesajınız:</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        cols="50"
+        placeholder="Mesajınızı buraya yazınız..."
+      ></textarea>
+
+      <!-- Açılır liste -->
+      <label for="department">Departman Seçin:</label>
+      <select id="department" name="department">
+        <option value="">Lütfen birini seçin</option>
+        <option value="it">Bilgi Teknolojileri</option>
+        <option value="hr">İnsan Kaynakları</option>
+        <option value="marketing">Pazarlama</option>
+      </select>
+
+      <!-- Cinsiyet Seçimi -->
+      <label>Cinsiyet:</label>
+      <input type="radio" name="gender" id="male" value="male" />
+      <label for="male" class="inline">Erkek</label>
+
+      <input type="radio" name="gender" id="female" value="female" />
+      <label for="female" class="inline">Kadın</label>
+
+      <!-- Checkbox -->
+      <input type="checkbox" name="newsletter" id="newsletter" checked />
+      <label for="newsletter" class="inline">Bültene abone ol</label>
+
+      <!-- Renk seçici -->
+      <label for="color">Favori Renginiz:</label>
+      <input type="color" name="color" id="color" />
+
+      <!-- Slider -->
+      <label for="rating">Memnuniyet Puanı (0–100):</label>
+      <input
+        type="range"
+        name="rating"
+        id="rating"
+        min="0"
+        max="100"
+        value="50"
+      />
+
+      <!-- Dosya yükleme -->
+      <label for="photo">Profil Fotoğrafı:</label>
+      <input type="file" name="profile_photo" accept="image/*" id="photo" />
+
+      <!-- Gönderme butonu -->
+      <button type="submit">Gönder</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Buse Çoban - Anasayfa</title>
+  </head>
+  <body>
+    <h1>Buse Çoban</h1>
+    <p>
+      CodeCraft Bootcamp '25 katılımcısıyım. Web geliştirme dünyasına adım
+      atıyorum!
+    </p>
+
+    <nav>
+      <a href="index.html">Anasayfa</a> |
+      <a href="lecture1.html">Lecture 1</a>
+    </nav>
+    <hr />
+
+    <!-- Hakkımda -->
+    <h2>Hakkımda</h2>
+    <p>
+      Ben Buse Çoban. Web teknolojilerine ilgi duyuyorum. Özellikle HTML, CSS ve
+      JavaScript öğrenmeye odaklandım.
+    </p>
+
+    <!-- İletişim -->
+    <h2>İletişim</h2>
+    <p>
+      LinkedIn:
+      <a href="https://www.linkedin.com/in/busecoban/" target="_blank"
+        >linkedin.com/in/busecoban</a
+      ><br />
+      E-posta: <a href="mailto:buseccoban@mail.com">buseccoban@mail.com</a>
+    </p>
+
+    <!-- Form -->
+    <form action="/submit" method="POST">
+      <p>
+        <label
+          >Adınız:<br /><input
+            type="text"
+            name="ad"
+            placeholder="Adınızı girin"
+            required
+        /></label>
+      </p>
+      <p>
+        <label
+          >E-posta:<br /><input
+            type="email"
+            name="email"
+            placeholder="E-posta adresiniz"
+            required
+        /></label>
+      </p>
+      <p>
+        <label
+          >Mesaj:<br /><textarea
+            name="mesaj"
+            rows="4"
+            cols="50"
+            placeholder="Mesajınızı yazın..."
+          ></textarea>
+        </label>
+      </p>
+
+      <!-- Gün Katılımı (Checkbox) -->
+      <p>Katıldığınız günleri işaretleyin:</p>
+      <label
+        ><input type="checkbox" name="katilim_gunleri" value="1.Gün" /> 1. Gün –
+        HTML Temelleri</label
+      ><br />
+      <label
+        ><input type="checkbox" name="katilim_gunleri" value="2.Gün" /> 2. Gün –
+        CSS ile Stil Verme</label
+      ><br />
+
+      <br />
+      <button type="submit">Gönder</button>
+    </form>
+
+    <!-- Tablo -->
+    <h2>Bootcamp Programım</h2>
+    <table border="1">
+      <tr>
+        <th>Gün</th>
+        <th>Konu</th>
+      </tr>
+      <tr>
+        <td>1. Gün</td>
+        <td>HTML Temelleri</td>
+      </tr>
+      <tr>
+        <td>2. Gün</td>
+        <td>CSS ile Stil Verme</td>
+      </tr>
+    </table>
+  </body>
+</html>
