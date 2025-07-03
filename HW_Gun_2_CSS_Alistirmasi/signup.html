@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kayıt Ol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Kayıt formu başlangıcı -->
+    <form id="signupForm" action="#">
+      <!-- Sayfa başlığı -->
+      <h1>Hesap Oluştur</h1>
+
+      <!-- Ad Soyad -->
+      <label for="fullname">Ad Soyad:</label><br />
+      <input
+        type="text"
+        id="fullname"
+        name="fullname"
+        placeholder="Adınız ve soyadınız"
+        required
+      /><br /><br />
+
+      <!-- E-posta -->
+      <label for="email">E-posta:</label><br />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="E-postanızı girin"
+        required
+      /><br /><br />
+
+      <!-- Şifre -->
+      <label for="password">Şifre:</label><br />
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Şifre belirleyin"
+          required
+        />
+        <span
+          class="toggle-password"
+          onclick="toggleVisibility(this, 'password')"
+          >👁️</span
+        >
+      </div>
+      <div id="passwordError" class="error-message"></div>
+      <br />
+
+      <!-- Şifreyi Onayla -->
+      <label for="confirm_password">Şifreyi Onayla:</label><br />
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="confirm_password"
+          name="confirm_password"
+          placeholder="Şifrenizi tekrar girin"
+          required
+        />
+        <span
+          class="toggle-password"
+          onclick="toggleVisibility(this, 'confirm_password')"
+          >👁️</span
+        >
+      </div>
+      <div id="confirmError" class="error-message"></div>
+      <br />
+
+      <!-- Buton -->
+      <button type="submit">Kayıt Ol</button>
+
+      <!-- Alt bağlantı -->
+      <p>Zaten bir hesabın var mı? <a href="login.html">Giriş Yap</a></p>
+    </form>
+    <!-- Kayıt formu bitişi -->
+
+    <!-- Göz butonu + Şifre kontrolü -->
+    <script>
+      function toggleVisibility(icon, id) {
+        const input = document.getElementById(id);
+        const isHidden = input.type === "password";
+        input.type = isHidden ? "text" : "password";
+        icon.textContent = isHidden ? "🙈" : "👁️";
+      }
+
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const fullname = document.getElementById("fullname").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password");
+          const confirm = document.getElementById("confirm_password");
+          const passwordError = document.getElementById("passwordError");
+          const confirmError = document.getElementById("confirmError");
+
+          password.classList.remove("error");
+          confirm.classList.remove("error");
+          passwordError.style.display = "none";
+          confirmError.style.display = "none";
+
+          const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+          let valid = true;
+
+          if (!regex.test(password.value)) {
+            password.classList.add("error");
+            passwordError.textContent =
+              "Şifre en az 8 karakter, 1 büyük harf, 1 küçük harf ve 1 rakam içermelidir.";
+            passwordError.style.display = "block";
+            valid = false;
+          }
+
+          if (password.value !== confirm.value) {
+            confirm.classList.add("error");
+            confirmError.textContent = "Şifreler eşleşmiyor.";
+            confirmError.style.display = "block";
+            valid = false;
+          }
+
+          if (!valid) return;
+
+          const user = {
+            fullname: fullname,
+            email: email,
+            password: password.value, //güvenlik bakımından hiçbir sıkıntı yok :)
+          };
+
+          // Önceki kullanıcılar varsa al, yoksa boş liste
+          const existingUsers = JSON.parse(
+            localStorage.getItem("users") || "[]"
+          );
+
+          // Aynı e-posta varsa kaydetme
+          const emailExists = existingUsers.some((u) => u.email === user.email);
+          if (emailExists) {
+            alert("❌ Bu e-posta zaten kayıtlı.");
+            return;
+          }
+
+          // Yeni kullanıcıyı ekle ve kaydet
+          existingUsers.push(user);
+          localStorage.setItem("users", JSON.stringify(existingUsers));
+
+          alert("✅ Başarıyla kayıt oldunuz!");
+          document.getElementById("signupForm").reset();
+          window.location.href = "login.html"; // otomatik yönlendirme
+        });
+    </script>
+  </body>
+</html>

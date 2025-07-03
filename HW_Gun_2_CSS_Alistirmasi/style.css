@@ -1,0 +1,149 @@
+/* Genel stil */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(to right, #d4f1f9, #f0f9ff);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form kutusu */
+form {
+  background-color: #ffffff;
+  padding: 35px 28px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 380px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Fade-in animasyonu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Başlık */
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+
+/* Etiketler */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #34495e;
+  font-size: 14px;
+}
+
+/* Giriş alanları */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 11px;
+  margin-bottom: 5px;
+  border: 1px solid #ccd6dd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, background-color 0.3s;
+  font-size: 14px;
+}
+
+/* Hatalı input kenarlığı */
+input.error {
+  border-color: #e74c3c;
+  background-color: #fff5f5;
+}
+
+/* Şifre göster ikonu */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* Hata mesajı küçük */
+.error-message {
+  font-size: 12px;
+  color: #e74c3c;
+  margin-bottom: 12px;
+  display: none;
+}
+
+/* Buton */
+button {
+  width: 100%;
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #0056b3, #004488);
+}
+
+/* Alt bağlantılar */
+p {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 13px;
+  color: #555;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+/* Checkbox hizalama */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #34495e;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #007bff;
+}
