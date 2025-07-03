@@ -1,3 +1,4 @@
+/* Genel sayfa stili */
 body {
   font-family: "Segoe UI", Tahoma, sans-serif;
   background: linear-gradient(to right, #d4f1f9, #f0f9ff);
@@ -9,16 +10,18 @@ body {
   height: 100vh;
 }
 
+/* Form container */
 .form-container {
   background-color: #ffffff;
   padding: 35px 28px;
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 380px;
+  max-width: 400px;
   animation: fadeIn 0.6s ease;
 }
 
+/* Fade in animasyonu */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -30,6 +33,7 @@ body {
   }
 }
 
+/* Başlık stili */
 h1 {
   text-align: center;
   color: #2c3e50;
@@ -38,20 +42,22 @@ h1 {
   font-family: "Poppins", sans-serif;
 }
 
+/* Label stili */
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   font-weight: 600;
   color: #34495e;
   font-size: 14px;
 }
 
+/* Input alanları */
 input[type="email"],
 input[type="password"],
 input[type="text"] {
   width: 100%;
   padding: 11px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   border: 1px solid #ccd6dd;
   border-radius: 6px;
   box-sizing: border-box;
@@ -59,6 +65,7 @@ input[type="text"] {
   font-size: 14px;
 }
 
+/* Focus durumunda input */
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="text"]:focus {
@@ -67,55 +74,66 @@ input[type="text"]:focus {
   background-color: #f5fbff;
 }
 
+/* Hatalı input */
 input.error {
   border-color: #e74c3c;
   background-color: #fff5f5;
 }
 
+/* Şifre alanı wrapper */
 .password-wrapper {
   position: relative;
-  height: 40px;
+  margin-bottom: 16px;
 }
 
+/* Şifre input padding sağa */
 .password-wrapper input {
   padding-right: 40px;
 }
 
+/* Göz ikonu */
 .toggle-password {
   position: absolute;
   right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 11px;
   font-size: 18px;
   color: #007bff;
-  line-height: 1;
-  pointer-events: all;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  width: 18px;
 }
 
+/* Hata mesajı */
 .error-message {
   font-size: 12px;
   color: #e74c3c;
-  margin-top: -5px;
-  margin-bottom: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
   display: none;
 }
 
+/* Checkbox alanı */
 .checkbox-wrapper {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 18px;
-  margin-bottom: 18px;
   font-size: 14px;
   color: #34495e;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
+/* Checkbox kutusu */
 .checkbox-wrapper input[type="checkbox"] {
   width: 16px;
   height: 16px;
   accent-color: #007bff;
 }
 
+/* Buton stili */
 button {
   width: 100%;
   background: linear-gradient(45deg, #007bff, #0056b3);
@@ -130,10 +148,12 @@ button {
   transition: background 0.3s ease;
 }
 
+/* Buton hover */
 button:hover {
   background: linear-gradient(45deg, #0056b3, #004488);
 }
 
+/* Alt metin */
 p {
   text-align: center;
   margin-top: 18px;
@@ -141,12 +161,14 @@ p {
   color: #555;
 }
 
+/* Linkler */
 a {
   color: #007bff;
   text-decoration: none;
   font-weight: bold;
 }
 
+/* Link hover */
 a:hover {
   text-decoration: underline;
 }

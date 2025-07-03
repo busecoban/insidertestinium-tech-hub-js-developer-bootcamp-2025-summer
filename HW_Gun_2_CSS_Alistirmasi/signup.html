@@ -11,13 +11,17 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body>
     <!-- Formu saran dış container -->
     <div class="form-container">
       <!-- Kayıt formu başlangıcı -->
       <form id="signupForm" action="#">
-        <!-- Sayfa başlığı -->
         <h1>Hesap Oluştur</h1>
 
         <!-- Ad Soyad -->
@@ -53,8 +57,9 @@
           <span
             class="toggle-password"
             onclick="toggleVisibility(this, 'password')"
-            >👁️</span
           >
+            <i class="fa-solid fa-eye"></i>
+          </span>
         </div>
         <div id="passwordError" class="error-message"></div>
 
@@ -71,8 +76,9 @@
           <span
             class="toggle-password"
             onclick="toggleVisibility(this, 'confirm_password')"
-            >👁️</span
           >
+            <i class="fa-solid fa-eye"></i>
+          </span>
         </div>
         <div id="confirmError" class="error-message"></div>
 
@@ -85,16 +91,18 @@
       <!-- Kayıt formu bitişi -->
     </div>
 
-    <!-- Göz butonu + Şifre kontrolü -->
+    <!-- JS -->
     <script>
-      function toggleVisibility(icon, id) {
+      // Şifre görünürlüğü değiştirme fonksiyonu
+      function toggleVisibility(wrapper, id) {
         const input = document.getElementById(id);
+        const icon = wrapper.querySelector("i");
         const isHidden = input.type === "password";
         input.type = isHidden ? "text" : "password";
-        icon.textContent = isHidden ? "🙈" : "👁️";
+        icon.className = isHidden ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
       }
 
-      // Kayıt formu gönderildiğinde çalışır
+      // Form gönderildiğinde çalışacak olay
       document
         .getElementById("signupForm")
         .addEventListener("submit", function (e) {
@@ -107,13 +115,13 @@
           const passwordError = document.getElementById("passwordError");
           const confirmError = document.getElementById("confirmError");
 
-          // Önceki hataları temizle
+          // Hataları temizle
           password.classList.remove("error");
           confirm.classList.remove("error");
           passwordError.style.display = "none";
           confirmError.style.display = "none";
 
-          // Şifre format kontrolü
+          // Şifre kontrolü
           const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
           let valid = true;
 
@@ -125,7 +133,6 @@
             valid = false;
           }
 
-          // Şifre eşleşme kontrolü
           if (password.value !== confirm.value) {
             confirm.classList.add("error");
             confirmError.textContent = "Şifreler eşleşmiyor.";
@@ -135,26 +142,22 @@
 
           if (!valid) return;
 
-          // Kullanıcı nesnesi oluştur
+          // Kullanıcı oluştur ve localStorage'a kaydet
           const user = {
-            fullname: fullname,
-            email: email,
+            fullname,
+            email,
             password: password.value,
           };
 
-          // Önceki kullanıcıları al
           const existingUsers = JSON.parse(
             localStorage.getItem("users") || "[]"
           );
 
-          // Aynı e-posta var mı kontrol et
-          const emailExists = existingUsers.some((u) => u.email === user.email);
-          if (emailExists) {
+          if (existingUsers.some((u) => u.email === user.email)) {
             alert("❌ Bu e-posta zaten kayıtlı.");
             return;
           }
 
-          // Yeni kullanıcıyı kaydet
           existingUsers.push(user);
           localStorage.setItem("users", JSON.stringify(existingUsers));
 
