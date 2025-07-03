@@ -3,17 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <title>Giriş Yap</title>
+    <!-- Stil dosyası bağlantısı -->
     <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <!-- Formu saran dış container -->
     <div class="form-container">
+      <!-- Giriş formu başlangıcı -->
       <form id="loginForm" action="#">
+        <!-- Sayfa başlığı -->
         <h1>Giriş Yap</h1>
 
+        <!-- E-posta alanı -->
         <label for="email">E-posta:</label>
         <input
           type="email"
@@ -23,6 +29,7 @@
           required
         />
 
+        <!-- Şifre alanı -->
         <label for="password">Şifre:</label>
         <div class="password-wrapper">
           <input
@@ -40,17 +47,22 @@
         </div>
         <div id="loginError" class="error-message"></div>
 
+        <!-- Beni Hatırla seçeneği -->
         <div class="checkbox-wrapper">
           <input type="checkbox" id="remember" name="remember" />
           <label for="remember">Beni Hatırla</label>
         </div>
 
+        <!-- Giriş yap butonu -->
         <button type="submit">Giriş Yap</button>
 
+        <!-- Kayıt sayfasına yönlendirme -->
         <p>Hesabın yok mu? <a href="signup.html">Hemen Kayıt Ol</a></p>
       </form>
+      <!-- Giriş formu bitişi -->
     </div>
 
+    <!-- Şifre kontrol ve göz ikon scripti -->
     <script>
       function toggleVisibility(icon, id) {
         const input = document.getElementById(id);
@@ -59,6 +71,7 @@
         icon.textContent = isHidden ? "🙈" : "👁️";
       }
 
+      // Giriş formu gönderildiğinde çalışır
       document
         .getElementById("loginForm")
         .addEventListener("submit", function (e) {
@@ -68,10 +81,14 @@
           const password = document.getElementById("password").value.trim();
           const errorMsg = document.getElementById("loginError");
 
+          // Önceki hataları temizle
           document.getElementById("password").classList.remove("error");
           errorMsg.style.display = "none";
 
+          // Kullanıcıları localStorage'tan al
           const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+          // Eşleşen kullanıcı var mı kontrol et
           const match = users.find(
             (u) => u.email === email && u.password === password
           );
